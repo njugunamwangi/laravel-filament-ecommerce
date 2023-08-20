@@ -1,0 +1,3 @@
+## Laravel Mix
+
+Laravel + Mix
