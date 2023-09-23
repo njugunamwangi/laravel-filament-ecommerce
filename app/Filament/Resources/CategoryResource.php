@@ -45,9 +45,12 @@ class CategoryResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('category')
+                    ->sortable()
                     ->searchable(),
                 Tables\Columns\TextColumn::make('parent.category')
-                    ->sortable(),
+                    ->sortable()
+                    ->searchable()
+                    ->label('Parent Category'),
                 Tables\Columns\TextColumn::make('deleted_at')
                     ->dateTime()
                     ->sortable(),
