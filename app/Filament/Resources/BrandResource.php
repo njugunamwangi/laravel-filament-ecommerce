@@ -28,9 +28,9 @@ class BrandResource extends Resource
         return $form
             ->schema([
                 SpatieMediaLibraryFileUpload::make('logo')
+                    ->disk('local')
                     ->directory('brands')
                     ->imageEditor()
-                    ->storeFiles()
                     ->preserveFilenames()
                     ->collection('brands'),
                 Forms\Components\TextInput::make('brand')
@@ -45,7 +45,9 @@ class BrandResource extends Resource
     {
         return $table
             ->columns([
-                SpatieMediaLibraryImageColumn::make('logo'),
+                SpatieMediaLibraryImageColumn::make('logo')
+                    ->disk('local')
+                    ->collection('brands'),
                 Tables\Columns\TextColumn::make('brand')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('deleted_at')
