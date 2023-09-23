@@ -6,6 +6,8 @@ An e-commerce site using Laravel 10, Filament V3 and Laravel Mix
 
 - [Activity Log](https://github.com/pxlrbt/filament-activity-log)
 - [Media Library](https://filamentphp.com/plugins/filament-spatie-media-library)
+- [Spatie Sluggable](https://github.com/spatie/laravel-sluggable)
+- [Spatie Activity Log](https://github.com/spatie/laravel-activitylog)
 - [Spatie Roles Permissions](https://filamentphp.com/plugins/tharinda-rodrigo-spatie-roles-permissions)
 
 ## Tech Stack
