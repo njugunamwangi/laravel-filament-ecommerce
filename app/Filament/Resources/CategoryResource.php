@@ -6,9 +6,12 @@ use App\Filament\Resources\CategoryResource\Pages;
 use App\Filament\Resources\CategoryResource\RelationManagers;
 use App\Models\Category;
 use Filament\Forms;
+use Filament\Forms\Components\Grid;
+use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -25,16 +28,25 @@ class CategoryResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('category')
-                    ->required()
-                    ->maxLength(256),
-                Forms\Components\Select::make('parent_id')
-                    ->label('Parent Category')
-                    ->relationship('parent', 'category')
-                    ->searchable('category')
-                    ->searchPrompt('Search categories ')
-                    ->searchingMessage('Searching categories...')
-                    ->preload(),
+                SpatieMediaLibraryFileUpload::make('categories')
+                    ->directory('categories')
+                    ->columnSpanFull()
+                    ->imageEditor()
+                    ->preserveFilenames()
+                    ->collection('categories'),
+                Grid::make(2)
+                    ->schema([
+                        Forms\Components\TextInput::make('category')
+                            ->required()
+                            ->maxLength(256),
+                        Forms\Components\Select::make('parent_id')
+                            ->label('Parent Category')
+                            ->relationship('parent', 'category')
+                            ->searchable('category')
+                            ->searchPrompt('Search categories ')
+                            ->searchingMessage('Searching categories...')
+                            ->preload(),
+                    ]),
                 Forms\Components\RichEditor::make('description')
                     ->columnSpanFull(),
             ]);
@@ -44,6 +56,8 @@ class CategoryResource extends Resource
     {
         return $table
             ->columns([
+                SpatieMediaLibraryImageColumn::make('categories')
+                    ->collection('categories'),
                 Tables\Columns\TextColumn::make('category')
                     ->sortable()
                     ->searchable(),

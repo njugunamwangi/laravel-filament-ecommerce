@@ -27,8 +27,7 @@ class BrandResource extends Resource
     {
         return $form
             ->schema([
-                SpatieMediaLibraryFileUpload::make('logo')
-                    ->disk('local')
+                SpatieMediaLibraryFileUpload::make('brands')
                     ->directory('brands')
                     ->imageEditor()
                     ->preserveFilenames()
@@ -45,12 +44,12 @@ class BrandResource extends Resource
     {
         return $table
             ->columns([
-                SpatieMediaLibraryImageColumn::make('logo')
-                    ->disk('local')
+                SpatieMediaLibraryImageColumn::make('brands')
                     ->collection('brands'),
                 Tables\Columns\TextColumn::make('brand')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('deleted_at')
+                    ->toggleable(isToggledHiddenByDefault: true)
                     ->dateTime()
                     ->sortable(),
             ])

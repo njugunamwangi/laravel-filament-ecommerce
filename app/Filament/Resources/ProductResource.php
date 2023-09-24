@@ -12,6 +12,7 @@ use Filament\Forms\Components\Wizard;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
@@ -38,8 +39,7 @@ class ProductResource extends Resource
                                 ->description('Basic product information')
                                 ->icon('heroicon-o-banknotes')
                                 ->schema([
-                                    SpatieMediaLibraryFileUpload::make('profile')
-                                        ->disk('local')
+                                    SpatieMediaLibraryFileUpload::make('products')
                                         ->directory('products')
                                         ->imageEditor()
                                         ->preserveFilenames()
@@ -100,7 +100,7 @@ class ProductResource extends Resource
                                     ]),
                             Wizard\Step::make('Product Properties')
                                 ->description('Add product properties')
-                                ->icon('heroicon-o-photo')
+                                ->icon('heroicon-o-adjustments-vertical')
                                 ->schema([
                                     Forms\Components\Select::make('colors')
                                         ->relationship('colors', 'color')
@@ -134,12 +134,11 @@ class ProductResource extends Resource
                                 ->icon('heroicon-o-photo')
                                 ->schema([
                                     SpatieMediaLibraryFileUpload::make('images')
-                                        ->disk('local')
-                                        ->directory('products')
+                                        ->directory('images')
                                         ->imageEditor()
                                         ->multiple()
                                         ->preserveFilenames()
-                                        ->collection('products'),
+                                        ->collection('images'),
                                 ])
                         ])
                     ]),
@@ -150,6 +149,8 @@ class ProductResource extends Resource
     {
         return $table
             ->columns([
+                SpatieMediaLibraryImageColumn::make('products')
+                    ->collection('products'),
                 Tables\Columns\TextColumn::make('product')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('list_price')
