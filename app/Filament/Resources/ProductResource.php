@@ -93,8 +93,10 @@ class ProductResource extends Resource
                                             Forms\Components\CheckboxList::make('categories')
                                                 ->relationship('categories', 'category')
                                                 ->searchable(),
-                                            Forms\Components\CheckboxList::make('tags')
+                                            Forms\Components\Select::make('tags')
                                                 ->relationship('tags', 'tag')
+                                                ->preload()
+                                                ->multiple()
                                                 ->searchable(),
                                         ])
                                     ]),
@@ -140,7 +142,7 @@ class ProductResource extends Resource
                                         ->preserveFilenames()
                                         ->collection('images'),
                                 ])
-                        ])
+                        ])->startOnStep(1)
                     ]),
             ]);
     }
