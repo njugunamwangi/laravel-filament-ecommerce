@@ -22,7 +22,7 @@ class Tag extends Model
     public function getSlugOptions(): SlugOptions
     {
         return SlugOptions::create()
-            ->generateSlugsFrom('category')
+            ->generateSlugsFrom('tag')
             ->saveSlugsTo('slug');
     }
 }
