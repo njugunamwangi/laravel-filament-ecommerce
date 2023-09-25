@@ -65,6 +65,8 @@ class CategoryResource extends Resource
                     ->sortable()
                     ->searchable()
                     ->label('Parent Category'),
+                Tables\Columns\TextColumn::make('slug')
+                    ->searchable(),
                 Tables\Columns\TextColumn::make('deleted_at')
                     ->toggleable(isToggledHiddenByDefault: true)
                     ->dateTime()

@@ -38,8 +38,11 @@ class ColorResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('color')
                     ->searchable(),
+                Tables\Columns\TextColumn::make('slug')
+                    ->searchable(),
                 Tables\Columns\TextColumn::make('deleted_at')
                     ->dateTime()
+                    ->toggleable(isToggledHiddenByDefault: true)
                     ->sortable(),
             ])
             ->filters([
