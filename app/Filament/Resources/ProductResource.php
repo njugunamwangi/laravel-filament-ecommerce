@@ -152,13 +152,16 @@ class ProductResource extends Resource
         return $table
             ->columns([
                 SpatieMediaLibraryImageColumn::make('products')
+                    ->label('Product Image')
                     ->collection('products'),
                 Tables\Columns\TextColumn::make('product')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('list_price')
+                    ->prefix('Kes')
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('retail_price')
+                    ->prefix('Kes')
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\ToggleColumn::make('status'),

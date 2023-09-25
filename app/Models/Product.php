@@ -92,4 +92,16 @@ class Product extends Model implements HasMedia
     {
         return $this->belongsToMany(Color::class);
     }
+
+    public function getDiscount() {
+        $diff = $this->list_price - $this->retail_price;
+
+        $percent = $diff / $this->list_price;
+
+        return '-' . round($percent * 100) . '%';
+    }
+
+    public function getDescription() {
+        return strip_tags($this->description);
+    }
 }

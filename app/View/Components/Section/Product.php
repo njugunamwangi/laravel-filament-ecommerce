@@ -21,6 +21,12 @@ class Product extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('section.product');
+        $products = \App\Models\Product::query()
+            ->where('status', '=', 1)
+            ->limit(4)
+            ->orderBy('created_at', 'desc')
+            ->get();
+
+        return view('section.product', compact('products'));
     }
 }
