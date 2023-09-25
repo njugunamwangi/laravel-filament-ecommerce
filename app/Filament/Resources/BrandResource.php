@@ -48,6 +48,8 @@ class BrandResource extends Resource
                     ->collection('brands'),
                 Tables\Columns\TextColumn::make('brand')
                     ->searchable(),
+                Tables\Columns\TextColumn::make('slug')
+                    ->searchable(),
                 Tables\Columns\TextColumn::make('deleted_at')
                     ->toggleable(isToggledHiddenByDefault: true)
                     ->dateTime()
