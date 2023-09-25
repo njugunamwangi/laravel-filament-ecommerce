@@ -93,6 +93,10 @@ class Product extends Model implements HasMedia
         return $this->belongsToMany(Color::class);
     }
 
+    public function sizes() : HasMany {
+        return $this->hasMany(Size::class, 'product_id');
+    }
+
     public function getDiscount() {
         $diff = $this->list_price - $this->retail_price;
 
