@@ -25,4 +25,5 @@ Route::post('/signup', [AuthController::class, 'signup']);
 Route::post('/login', [AuthController::class, 'login']);
 Route::get('/latest', [ProductController::class, 'latest']);
 Route::get('/categories', [ProductController::class, 'categories']);
+Route::get('/brands', [ProductController::class, 'brands']);
 

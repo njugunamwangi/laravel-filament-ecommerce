@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\BrandResource;
 use App\Http\Resources\CategoryResource;
 use App\Http\Resources\ProductResource;
+use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Product;
 use Carbon\Carbon;
@@ -55,9 +57,25 @@ class ProductController extends Controller
                     'categories.id',
                     'categories.description',
                     'categories.slug',
-                    'categories.slug',
                     DB::raw('count(*) as total'))
                 ->groupBy('categories.id', 'categories.category', 'categories.slug', 'categories.description',)
+                ->orderByDesc('total')
+                ->limit(4)
+                ->get()
+        );
+    }
+
+    public function brands() {
+        return BrandResource::collection(
+            Brand::query()
+                ->join('brand_product', 'brands.id', '=', 'brand_product.brand_id')
+                ->select(
+                    'brands.brand',
+                    'brands.id',
+                    'brands.description',
+                    'brands.slug',
+                    DB::raw('count(*) as total'))
+                ->groupBy('brands.id', 'brands.brand', 'brands.slug', 'brands.description',)
                 ->orderByDesc('total')
                 ->limit(4)
                 ->get()

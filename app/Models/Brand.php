@@ -34,4 +34,9 @@ class Brand extends Model implements HasMedia
     public function products() : BelongsToMany {
         return $this->belongsToMany(Product::class);
     }
+
+    public function registerMediaCollections(): void
+    {
+        $this->addMediaCollection('brands');
+    }
 }

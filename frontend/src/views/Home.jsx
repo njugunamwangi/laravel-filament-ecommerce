@@ -8,6 +8,8 @@ export default function Home() {
 
     const [ categories, setCategories ] = useState([])
 
+    const [ brands, setBrands ] = useState([])
+
     useEffect(() => {
         axiosClient.get('/latest')
             .then(({ data }) => {
@@ -19,7 +21,13 @@ export default function Home() {
         axiosClient.get('/categories')
             .then(({ data }) => {
                 setCategories(data.data)
-                console.log(data.data)
+            })
+    }, [])
+
+    useEffect(() => {
+        axiosClient.get('/brands')
+            .then(({ data }) => {
+                setBrands(data.data)
             })
     }, [])
 
@@ -97,7 +105,7 @@ export default function Home() {
 
             <div className="bg-white py-6 sm:py-8 lg:py-12">
                 <div className="mx-auto max-w-screen-2xl px-4 md:px-8">
-                    <h2 className="mb-8 text-center text-2xl font-bold text-gray-800 md:mb-12 lg:text-3xl">Categories</h2>
+                    <h2 className="mb-8 text-center text-2xl font-bold text-gray-800 md:mb-12 lg:text-3xl">Top Categories</h2>
 
                     <div className="grid gap-4 sm:grid-cols-2 md:gap-6 lg:grid-cols-3 xl:grid-cols-4">
                         {categories.map(category => (
@@ -111,6 +119,30 @@ export default function Home() {
 
                                     <div className="relative flex w-full flex-col rounded-lg bg-white p-4 text-center">
                                         <span className="text-lg font-bold text-gray-800 lg:text-xl">{category.category}</span>
+                                    </div>
+                                </a>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </div>
+
+            <div className="bg-white py-6 sm:py-8 lg:py-12">
+                <div className="mx-auto max-w-screen-2xl px-4 md:px-8">
+                    <h2 className="mb-8 text-center text-2xl font-bold text-gray-800 md:mb-12 lg:text-3xl">Top Brands</h2>
+
+                    <div className="grid gap-4 sm:grid-cols-2 md:gap-6 lg:grid-cols-3 xl:grid-cols-4">
+                        {brands.map(brand => (
+                            <div key={brand.id}>
+                                <a href={brand.slug} className="group relative flex h-96 items-end overflow-hidden rounded-lg bg-gray-100 p-4 shadow-lg">
+                                    <img
+                                        src={brand.image}
+                                        loading="lazy"
+                                        alt={brand.brand}
+                                        className="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />
+
+                                    <div className="relative flex w-full flex-col rounded-lg bg-white p-4 text-center">
+                                        <span className="text-lg font-bold text-gray-800 lg:text-xl">{brand.brand}</span>
                                     </div>
                                 </a>
                             </div>
