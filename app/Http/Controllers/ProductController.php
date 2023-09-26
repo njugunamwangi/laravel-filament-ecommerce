@@ -20,4 +20,14 @@ class ProductController extends Controller
         return view('components.view-product', compact('product'));
 
     }
+
+    public function latest() {
+        return ProductResource::collection(
+            Product::query()
+                ->where('status', '=', 1)
+                ->limit(4)
+                ->orderBy('created_at', 'desc')
+                ->get()
+        );
+    }
 }
