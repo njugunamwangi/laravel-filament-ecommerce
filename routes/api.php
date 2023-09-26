@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -23,7 +24,12 @@ Route::middleware('auth:sanctum')->group(function () {
 
 Route::post('/signup', [AuthController::class, 'signup']);
 Route::post('/login', [AuthController::class, 'login']);
-Route::get('/latest', [ProductController::class, 'latest']);
-Route::get('/categories', [ProductController::class, 'categories']);
-Route::get('/brands', [ProductController::class, 'brands']);
+
+// Products
+Route::get('/product/{product:slug}', [ProductController::class, 'show']);
+
+// Home
+Route::get('/latest', [HomeController::class, 'latest']);
+Route::get('/categories', [HomeController::class, 'categories']);
+Route::get('/brands', [HomeController::class, 'brands']);
 

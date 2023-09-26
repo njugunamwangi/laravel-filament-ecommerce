@@ -84,7 +84,7 @@ export default function Home() {
                                                     <a href={product.slug} className="text-lg font-bold text-gray-800 transition duration-100 hover:text-gray-500 lg:text-xl">
                                                         {product.product}
                                                     </a>
-                                                    <span className="text-gray-500">by Fancy Brand</span>
+                                                    <span className="text-gray-500">by {product.brand}</span>
                                                 </div>
 
                                                 <div className="flex flex-col items-end">

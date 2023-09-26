@@ -17,10 +17,11 @@ class ProductResource extends JsonResource
         return [
             'id' => $this->id ,
             'product' => $this->product ,
+            'brand' => ProductBrandResource::collection($this->brands),
             'model_name' => $this->model_name ,
             'model_number' => $this->model_number ,
             'slug' => $this->slug ,
-            'description' => $this->description ,
+            'description' => $this->getDescription() ,
             'material' => $this->material ,
             'list_price' => number_format($this->list_price, 2) ,
             'retail_price' => number_format($this->retail_price, 2) ,
@@ -32,7 +33,11 @@ class ProductResource extends JsonResource
             'warranty' => $this->warranty ,
             'meta_title' => $this->meta_title ,
             'meta_description' => $this->meta_description ,
-            'image' => $this->getMedia('products')->first()->getUrl()
+            'image' => $this->getMedia('products')->first()->getUrl(),
+            'photos' => $this->getMedia('images')->pluck('original_url')->take(2),
+            'tags' => ProductTagResource::collection($this->tags),
+            'sizes' => SizeResource::collection($this->sizes),
+            'colors' => ProductColorResource::collection($this->colors)
         ];
     }
 }

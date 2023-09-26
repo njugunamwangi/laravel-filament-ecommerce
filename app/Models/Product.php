@@ -108,4 +108,10 @@ class Product extends Model implements HasMedia
     public function getDescription() {
         return strip_tags($this->description);
     }
+
+    public function registerMediaCollections(): void
+    {
+        $this->addMediaCollection('products'); // Main product image collection
+        $this->addMediaCollection('images');   // Additional images collection
+    }
 }
