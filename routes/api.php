@@ -24,4 +24,5 @@ Route::middleware('auth:sanctum')->group(function () {
 Route::post('/signup', [AuthController::class, 'signup']);
 Route::post('/login', [AuthController::class, 'login']);
 Route::get('/latest', [ProductController::class, 'latest']);
+Route::get('/categories', [ProductController::class, 'categories']);
 

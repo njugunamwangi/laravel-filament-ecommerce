@@ -30,6 +30,11 @@ class Category extends Model implements HasMedia
             ->saveSlugsTo('slug');
     }
 
+    public function registerMediaCollections(): void
+    {
+        $this->addMediaCollection('categories');
+    }
+
     public function children() : HasMany
     {
         return $this->hasMany(Category::class, 'parent_id');
