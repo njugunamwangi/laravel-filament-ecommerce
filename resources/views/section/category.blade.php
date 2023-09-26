@@ -7,10 +7,10 @@
             <!-- category - start -->
             @foreach($categories as $category)
             <div>
-                <a href="{{ $category->slug }}" class="group relative flex h-96 items-end overflow-hidden rounded-lg bg-gray-100 p-4 shadow-lg">
+                <a href="{{ route('by-category', $category) }}" class="group relative flex h-96 items-end overflow-hidden rounded-lg bg-gray-100 p-4 shadow-lg">
                     @if ($category->hasMedia('categories'))
                         <img
-                            src="{{ $category->getFirstMedia('categories')->getUrl() }}"
+                            src="{{ $category->getMedia('categories')->getUrl() }}"
                             loading="lazy"
                             alt="{{ $category->category }}"
                             class="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />

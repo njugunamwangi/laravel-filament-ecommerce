@@ -33,9 +33,10 @@
                             {{ $product->product }}
                         </a>
                         <span class="text-gray-500">by
-                            @foreach($product->brands as $brand)
-                                {{ $brand->brand }}
-                            @endforeach
+{{--                            @foreach($product->brands as $brand)--}}
+{{--                                {{ $brand->brand }}--}}
+{{--                            @endforeach--}}
+                            {{$product->brand}}
                         </span>
                     </div>
 

@@ -7,9 +7,13 @@ use App\Models\Category as Categories;
 use Illuminate\Support\Facades\DB;
 use Illuminate\View\Component;
 use Illuminate\Contracts\View\View;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 
-class Category extends Component
+class Category extends Component implements HasMedia
 {
+
+    use InteractsWithMedia;
     /**
      * Create a new component instance.
      */
