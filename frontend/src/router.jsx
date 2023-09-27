@@ -2,7 +2,8 @@ import {createBrowserRouter} from "react-router-dom";
 import Home from "./views/Home.jsx";
 import Signup from "./views/auth/Signup.jsx";
 import Login from "./views/auth/Login.jsx";
-import ProductView from "./views/ProductView.jsx";
+import ProductView from "./views/components/ProductView.jsx";
+import ShoppingCart from "./views/ShoppingCart.jsx";
 
 const router = createBrowserRouter([
     {
@@ -20,6 +21,10 @@ const router = createBrowserRouter([
     {
         path: '/product/:slug',
         element: <ProductView />
+    },
+    {
+        path: '/shopping-cart',
+        element: <ShoppingCart />
     }
 
 ])
