@@ -42,6 +42,12 @@ export function CartProvider({ children }) {
     }
     const removeItem = (id) => dispatch({type: 'REMOVE', payload: id})
 
+    function countItemsInCart(id) {
+        const itemsInCart = state.cart.filter((product) => product.id === id) ?? [];
+
+        return itemsInCart.length
+    }
+
     function totalPrice() {}
 
     return (
@@ -49,6 +55,7 @@ export function CartProvider({ children }) {
             addItem,
             removeItem,
             cart: state.cart,
+            countItemsInCart,
             totalPrice: totalPrice(),
         }}>
             {children}

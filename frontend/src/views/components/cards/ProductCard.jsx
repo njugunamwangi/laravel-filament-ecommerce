@@ -1,7 +1,7 @@
 import {useCart} from "../../contexts/CartContext.jsx";
 
 export default function ProductCard({ product }) {
-    const { addItem } = useCart()
+    const { addItem, countItemsInCart } = useCart()
 
     return (
         <div>
@@ -36,11 +36,13 @@ export default function ProductCard({ product }) {
                 <a href="#"
                    onClick={() => addItem(product.id)}
                    className="inline-block flex-1 rounded-lg bg-indigo-500 px-8 py-3 text-center text-sm font-semibold text-white outline-none ring-indigo-300 transition duration-100 hover:bg-indigo-600 focus-visible:ring active:bg-indigo-700 sm:flex-none md:text-base">
-                    Add to cart</a>
+                    Add to cart ({countItemsInCart(product.id)})</a>
 
-                <a href="#"
-                   className="inline-block flex-1 rounded-lg bg-red-500 px-8 py-3 text-center text-sm font-semibold text-white outline-none ring-indigo-300 transition duration-100 hover:bg-indigo-600 focus-visible:ring active:bg-indigo-700 sm:flex-none md:text-base">
-                    Remove from cart</a>
+                {countItemsInCart(product.id) > 0 && (
+                    <a href="#"
+                       className="inline-block flex-1 rounded-lg bg-red-500 px-8 py-3 text-center text-sm font-semibold text-white outline-none ring-indigo-300 transition duration-100 hover:bg-indigo-600 focus-visible:ring active:bg-indigo-700 sm:flex-none md:text-base">
+                        Remove from cart</a>
+                )}
             </div>
         </div>
     )
