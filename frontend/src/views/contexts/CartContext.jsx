@@ -18,7 +18,12 @@ function reducer(state, {type, payload}) {
                 ]
             }
         case 'REMOVE':
-
+            const indexInCart = payload
+            const newCart = [...state.cart]
+            newCart.splice(indexInCart, 1)
+            return {
+                ...state, cart: newCart
+            }
         case 'EMPTY':
 
         default:
@@ -40,7 +45,10 @@ export function CartProvider({ children }) {
         const productToAdd = products.find((p) => p.id === id)
         dispatch({type: 'ADD', payload: productToAdd})
     }
-    const removeItem = (id) => dispatch({type: 'REMOVE', payload: id})
+    const removeItem = (id) => {
+        const productToRemove = state.cart.findIndex((p) => p.id === id)
+        dispatch({type: 'REMOVE', payload: productToRemove})
+    }
 
     function countItemsInCart(id) {
         const itemsInCart = state.cart.filter((product) => product.id === id) ?? [];
