@@ -3,9 +3,12 @@ import {Fragment, useEffect, useState} from "react";
 import axiosClient from "../../axios.js";
 import {Dialog, Transition} from "@headlessui/react";
 import {XMarkIcon} from "@heroicons/react/24/outline/index.js";
+import {useCart} from "../contexts/CartContext.jsx";
 
 export default function Header() {
     const { user, setUser, token, setToken } = useStateContext()
+
+    const { cart } = useCart()
 
     const [open, setOpen] = useState(false)
 
@@ -253,7 +256,7 @@ export default function Header() {
                             <div className="flex gap-2">
                                 <span className="hidden text-xs font-semibold text-gray-500 sm:block">Cart</span>
                                 <span className="hidden text-xs font-semibold text-gray-500 sm:block">
-                                    (0)
+                                    ({cart.length})
                                 </span>
                             </div>
                         </a>
