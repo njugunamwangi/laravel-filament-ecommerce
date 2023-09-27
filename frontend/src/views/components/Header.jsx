@@ -1,7 +1,6 @@
 import {useStateContext} from "../contexts/ContextProvider.jsx";
 import {useEffect} from "react";
 import axiosClient from "../../axios.js";
-import {Navigate} from "react-router-dom";
 
 export default function Header() {
     const { user, setUser, token, setToken } = useStateContext()
@@ -69,7 +68,7 @@ export default function Header() {
                         )}
 
 
-                        <a href="#" className="flex h-12 w-12 flex-col items-center justify-center gap-1.5 transition duration-100 hover:bg-gray-100 active:bg-gray-200 sm:h-20 sm:w-20 md:h-24 md:w-24">
+                        <a href="/shopping-cart" className="flex h-12 w-12 flex-col items-center justify-center gap-1.5 transition duration-100 hover:bg-gray-100 active:bg-gray-200 sm:h-20 sm:w-20 md:h-24 md:w-24">
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-gray-800" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
                             </svg>

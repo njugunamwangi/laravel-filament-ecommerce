@@ -1,27 +1,18 @@
 import {useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
-import axiosClient from "../axios.js";
-import Header from "./components/Header.jsx";
-import Loading from "./core/Loading.jsx";
-import {useStateContext} from "./contexts/ContextProvider.jsx";
+import axiosClient from "../../axios.js";
+import Header from "./Header.jsx";
+import Loading from "../core/Loading.jsx";
+import {useStateContext} from "../contexts/ContextProvider.jsx";
 
 export default function ProductView() {
     const { slug } = useParams()
 
+    const { user, setUser, token, setToken } = useStateContext()
+
     const [ product, setProduct ] = useState([])
 
     const [ loading, setLoading ] = useState(false)
-
-    const { user, setUser, token, setToken } = useStateContext()
-
-    if(token) {
-        useEffect(() => {
-            axiosClient.get('/me')
-                .then(({data}) => {
-                    setUser(data)
-                })
-        }, [])
-    }
 
     useEffect(() => {
         setLoading(true)
@@ -31,6 +22,15 @@ export default function ProductView() {
                 setLoading(false)
             })
     }, [])
+
+    if(token) {
+        useEffect(() => {
+            axiosClient.get('/me')
+                .then(({data}) => {
+                    setUser(data)
+                })
+        }, [])
+    }
 
     return (
         <>
@@ -165,8 +165,12 @@ export default function ProductView() {
 
                                     <div className="flex gap-2.5">
                                         <a href="#"
-                                           className="inline-block flex-1 rounded-lg bg-indigo-500 px-8 py-3 text-center text-sm font-semibold text-white outline-none ring-indigo-300 transition duration-100 hover:bg-indigo-600 focus-visible:ring active:bg-indigo-700 sm:flex-none md:text-base">Add
-                                            to cart</a>
+                                           className="inline-block flex-1 rounded-lg bg-indigo-500 px-8 py-3 text-center text-sm font-semibold text-white outline-none ring-indigo-300 transition duration-100 hover:bg-indigo-600 focus-visible:ring active:bg-indigo-700 sm:flex-none md:text-base">
+                                            Add to cart</a>
+
+                                        <a href="#"
+                                           className="inline-block flex-1 rounded-lg bg-red-500 px-8 py-3 text-center text-sm font-semibold text-white outline-none ring-indigo-300 transition duration-100 hover:bg-indigo-600 focus-visible:ring active:bg-indigo-700 sm:flex-none md:text-base">
+                                            Remove from cart</a>
 
                                         {user && token && (
                                             <a href="#"
