@@ -15,7 +15,12 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        return ProductResource::collection(
+            Product::query()
+                ->where('status', '=', 1)
+                ->orderBy('product')
+                ->get()
+        );
     }
 
     /**

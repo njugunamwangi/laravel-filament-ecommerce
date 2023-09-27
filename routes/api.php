@@ -27,6 +27,7 @@ Route::post('/login', [AuthController::class, 'login']);
 
 // Products
 Route::get('/product/{product:slug}', [ProductController::class, 'show']);
+Route::get('/products', [ProductController::class, 'index']);
 
 // Home
 Route::get('/latest', [HomeController::class, 'latest']);
