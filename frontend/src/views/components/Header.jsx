@@ -116,7 +116,7 @@ export default function Header() {
                                                                     <div
                                                                         className="flex w-full justify-between border-t pt-4 sm:w-auto sm:border-none sm:pt-0">
                                                                         <div className="flex flex-col items-start gap-2">
-                                                                            <div className="flex h-12 w-20 overflow-hidden rounded border">
+                                                                            <div className="flex h-12 w-24 overflow-hidden rounded border">
                                                                                 <input type="number" value="1"
                                                                                        className="w-full px-4 py-2 outline-none ring-inset ring-indigo-300 transition duration-100 focus:ring"/>
 
