@@ -25,8 +25,7 @@ const router = createBrowserRouter([
     {
         path: '/shopping-cart',
         element: <ShoppingCart />
-    }
-
+    },
 ])
 
 export default router;
