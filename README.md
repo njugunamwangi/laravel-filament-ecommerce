@@ -1,8 +1,8 @@
 ## About Project
 
-An e-commerce site using Laravel 10, Filament V3 and Laravel Mix
+An e-commerce site using Laravel 10, ReactJS, Filament V3 and Laravel Mix
 
-## Plugins
+## Plugins (Backend)
 
 - [Activity Log](https://github.com/pxlrbt/filament-activity-log)
 - [Media Library](https://filamentphp.com/plugins/filament-spatie-media-library)
@@ -12,6 +12,7 @@ An e-commerce site using Laravel 10, Filament V3 and Laravel Mix
 
 ## Tech Stack
 
-- [Laravel](https://laravel.com)
+- [Laravel 10](https://laravel.com)
 - [Filament V3](https://filamentphp.com/)
 - [TailwindCSS](https://tailwindcss.com/)
+- [ReactJS](https://react.dev/)
