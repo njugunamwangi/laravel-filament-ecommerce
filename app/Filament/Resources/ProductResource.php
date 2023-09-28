@@ -98,7 +98,7 @@ class ProductResource extends Resource
                                                 ->preload()
                                                 ->multiple()
                                                 ->searchable(),
-                                        ])
+                                        ]),
                                     ]),
                             Wizard\Step::make('Product Properties')
                                 ->description('Add product properties')
@@ -111,25 +111,31 @@ class ProductResource extends Resource
                                         ->searchable(),
                                     Forms\Components\RichEditor::make('warranty')
                                         ->columnSpanFull(),
-                                    Grid::make(3)
+                                    Forms\Components\Repeater::make('properties')
+                                        ->columnSpanFull()
+                                        ->relationship()
                                         ->schema([
-                                            Forms\Components\TextInput::make('length')
-                                                ->required()
-                                                ->numeric(),
-                                            Forms\Components\TextInput::make('width')
-                                                ->required()
-                                                ->numeric(),
-                                            Forms\Components\TextInput::make('height')
-                                                ->required()
-                                                ->numeric(),
-                                            ]),
-                                    Grid::make(2)
-                                        ->schema([
-                                            Forms\Components\TextInput::make('material')
-                                                ->maxLength(255),
-                                            Forms\Components\TextInput::make('weight')
-                                                ->required()
-                                                ->numeric(),])
+                                            Grid::make(2)
+                                                ->schema([
+                                                    Forms\Components\TextInput::make('material')
+                                                        ->maxLength(255),
+                                                    Forms\Components\TextInput::make('weight')
+                                                        ->suffix('in Kg')
+                                                        ->numeric(),
+                                                ]),
+                                            Grid::make(3)
+                                                ->schema([
+                                                    Forms\Components\TextInput::make('length')
+                                                        ->suffix('in cm')
+                                                        ->numeric(),
+                                                    Forms\Components\TextInput::make('width')
+                                                        ->suffix('in cm')
+                                                        ->numeric(),
+                                                    Forms\Components\TextInput::make('height')
+                                                        ->suffix('in cm')
+                                                        ->numeric(),
+                                                ])
+                                        ])
                                 ]),
                             Wizard\Step::make('Images')
                                 ->description('Add product images')
@@ -171,25 +177,6 @@ class ProductResource extends Resource
                 Tables\Columns\TextColumn::make('model_number')
                     ->toggleable(isToggledHiddenByDefault: true)
                     ->searchable(),
-                Tables\Columns\TextColumn::make('material')
-                    ->toggleable(isToggledHiddenByDefault: true)
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('length')
-                    ->numeric()
-                    ->toggleable(isToggledHiddenByDefault: true)
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('width')
-                    ->numeric()
-                    ->toggleable(isToggledHiddenByDefault: true)
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('height')
-                    ->numeric()
-                    ->toggleable(isToggledHiddenByDefault: true)
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('weight')
-                    ->numeric()
-                    ->toggleable(isToggledHiddenByDefault: true)
-                    ->sortable(),
                 Tables\Columns\TextColumn::make('createdBy.name')
                     ->toggleable(isToggledHiddenByDefault: true)
                     ->sortable(),

@@ -22,14 +22,9 @@ class ProductResource extends JsonResource
             'model_number' => $this->model_number ,
             'slug' => $this->slug ,
             'description' => $this->getDescription() ,
-            'material' => $this->material ,
             'list_price' => number_format($this->list_price, 2) ,
             'retail_price' => number_format($this->retail_price, 2) ,
             'discount' => $this->getDiscount(),
-            'length' => $this->length ,
-            'width' => $this->width ,
-            'height' => $this->height ,
-            'weight' => $this->weight ,
             'warranty' => $this->warranty ,
             'meta_title' => $this->meta_title ,
             'meta_description' => $this->meta_description ,
@@ -37,7 +32,8 @@ class ProductResource extends JsonResource
             'photos' => $this->getMedia('images')->pluck('original_url')->take(2),
             'tags' => ProductTagResource::collection($this->tags),
             'sizes' => SizeResource::collection($this->sizes),
-            'colors' => ProductColorResource::collection($this->colors)
+            'colors' => ProductColorResource::collection($this->colors),
+            'properties' => PropertyResource::collection($this->properties)
         ];
     }
 }
