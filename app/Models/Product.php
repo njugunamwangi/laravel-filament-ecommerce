@@ -35,13 +35,8 @@ class Product extends Model implements HasMedia
         'model_number',
         'slug',
         'description',
-        'material',
         'list_price',
         'retail_price',
-        'length',
-        'width',
-        'height',
-        'weight',
         'status',
         'warranty',
         'created_by',
@@ -95,6 +90,10 @@ class Product extends Model implements HasMedia
 
     public function sizes() : HasMany {
         return $this->hasMany(Size::class, 'product_id');
+    }
+
+    public function properties() : HasMany {
+        return $this->hasMany(Property::class, 'product_id');
     }
 
     public function getDiscount() {

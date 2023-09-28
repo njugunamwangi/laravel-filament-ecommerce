@@ -19,13 +19,8 @@ return new class extends Migration
             $table->string('model_number', 2000)->nullable();
             $table->string('slug', 2000);
             $table->longText('description')->nullable();
-            $table->string('material')->nullable();
             $table->decimal('list_price', 10, 2);
             $table->decimal('retail_price', 10, 2);
-            $table->decimal('length', 10, 2)->nullable();
-            $table->decimal('width', 10, 2)->nullable();
-            $table->decimal('height', 10, 2)->nullable();
-            $table->decimal('weight', 10, 2)->nullable();
             $table->boolean('status');
             $table->longText('warranty')->nullable();
             $table->foreignIdFor(User::class, 'created_by')->nullable();
