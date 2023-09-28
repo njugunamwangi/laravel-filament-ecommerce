@@ -1,7 +1,4 @@
-import {useCart} from "../../contexts/CartContext.jsx";
-
 export default function ProductCard({ product }) {
-    const { addItem, removeItem, countItemsInCart } = useCart()
 
     return (
         <div>
@@ -30,20 +27,6 @@ export default function ProductCard({ product }) {
                     <span className="font-bold text-gray-600 lg:text-lg">Kes {product.retail_price}</span>
                     <span className="text-sm text-red-500 line-through">Kes {product.list_price}</span>
                 </div>
-            </div>
-
-            <div className="flex gap-2.5 mt-4">
-                <a href="#"
-                   onClick={() => addItem(product.id)}
-                   className="inline-block flex-1 rounded-lg bg-indigo-500 px-8 py-3 text-center text-sm font-semibold text-white outline-none ring-indigo-300 transition duration-100 hover:bg-indigo-600 focus-visible:ring active:bg-indigo-700 sm:flex-none md:text-base">
-                    Add to cart ({countItemsInCart(product.id)})</a>
-
-                {countItemsInCart(product.id) > 0 && (
-                    <a href="#"
-                       onClick={() => removeItem(product.id)}
-                       className="inline-block flex-1 rounded-lg bg-red-500 px-8 py-3 text-center text-sm font-semibold text-white outline-none ring-indigo-300 transition duration-100 hover:bg-indigo-600 focus-visible:ring active:bg-indigo-700 sm:flex-none md:text-base">
-                        Remove from cart</a>
-                )}
             </div>
         </div>
     )
