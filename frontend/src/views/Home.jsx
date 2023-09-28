@@ -5,6 +5,8 @@ import axiosClient from "../axios.js";
 import Loading from "./core/Loading.jsx";
 import Footer from "./components/Footer.jsx";
 import ProductCard from "./components/cards/ProductCard.jsx";
+import CategoryCard from "./components/cards/CategoryCard.jsx";
+import BrandCard from "./components/cards/BrandCard.jsx";
 
 export default function Home() {
     const [ products, setProducts ] = useState([])
@@ -98,19 +100,7 @@ export default function Home() {
 
                                 <div className="grid gap-4 sm:grid-cols-2 md:gap-6 lg:grid-cols-3 xl:grid-cols-4">
                                     {categories.map(category => (
-                                        <div key={category.id}>
-                                            <a href={`/category/${category.slug}`} className="group relative flex h-96 items-end overflow-hidden rounded-lg bg-gray-100 p-4 shadow-lg">
-                                                <img
-                                                    src={category.image}
-                                                    loading="lazy"
-                                                    alt={category.category}
-                                                    className="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />
-
-                                                <div className="relative flex w-full flex-col rounded-lg bg-white p-4 text-center">
-                                                    <span className="text-lg font-bold text-gray-800 lg:text-xl">{category.category}</span>
-                                                </div>
-                                            </a>
-                                        </div>
+                                        <CategoryCard category={category} key={category.id} />
                                     ))}
                                 </div>
                             </div>
@@ -122,19 +112,7 @@ export default function Home() {
 
                                 <div className="grid gap-4 sm:grid-cols-2 md:gap-6 lg:grid-cols-3 xl:grid-cols-4">
                                     {brands.map(brand => (
-                                        <div key={brand.id}>
-                                            <a href={`/brand/${brand.slug}`} className="group relative flex h-96 items-end overflow-hidden rounded-lg bg-gray-100 p-4 shadow-lg">
-                                                <img
-                                                    src={brand.image}
-                                                    loading="lazy"
-                                                    alt={brand.brand}
-                                                    className="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />
-
-                                                <div className="relative flex w-full flex-col rounded-lg bg-white p-4 text-center">
-                                                    <span className="text-lg font-bold text-gray-800 lg:text-xl">{brand.brand}</span>
-                                                </div>
-                                            </a>
-                                        </div>
+                                        <BrandCard brand={brand} key={brand.id} />
                                     ))}
                                 </div>
                             </div>
