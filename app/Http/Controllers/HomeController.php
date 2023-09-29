@@ -9,17 +9,13 @@ use App\Http\Resources\ProductResource;
 use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Product;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
 
 class HomeController extends Controller
 {
-    public function index() : View
-    {
-        return view('home');
-    }
-
     public function latest() {
         return ProductResource::collection(
             Product::query()
@@ -61,6 +57,19 @@ class HomeController extends Controller
                 ->orderByDesc('total')
                 ->limit(4)
                 ->get()
+        );
+    }
+
+    public function byCategory(Category $category, Request $request) {
+        return ProductResource::collection(
+            Product::query()
+                ->with('media')
+                ->where('category_product.category_id', '=', $category->id)
+                ->join('category_product', 'products.id', '=', 'category_product.product_id')
+                ->select('products.*')
+                ->where('status', '=', 1)
+                ->orderBy('created_at', 'desc')
+                ->paginate(20)
         );
     }
 }
