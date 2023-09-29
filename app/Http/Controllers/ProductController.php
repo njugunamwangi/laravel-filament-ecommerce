@@ -19,6 +19,16 @@ class ProductController extends Controller
             Product::query()
                 ->where('status', '=', 1)
                 ->orderBy('product')
+                ->paginate(20)
+        );
+    }
+
+    public function cartItems()
+    {
+        return ProductResource::collection(
+            Product::query()
+                ->where('status', '=', 1)
+                ->orderBy('product')
                 ->get()
         );
     }

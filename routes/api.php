@@ -28,6 +28,9 @@ Route::post('/login', [AuthController::class, 'login']);
 // Products
 Route::get('/product/{product:slug}', [ProductController::class, 'show']);
 Route::get('/products', [ProductController::class, 'index']);
+Route::get('/cart-items', [ProductController::class, 'cartItems']);
+Route::get('/category/{category:slug}', [HomeController::class, 'byCategory']);
+Route::get('/brand/{brand:slug}', [HomeController::class, 'byBrand']);
 
 // Home
 Route::get('/latest', [HomeController::class, 'latest']);
