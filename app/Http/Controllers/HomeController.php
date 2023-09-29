@@ -61,7 +61,7 @@ class HomeController extends Controller
     }
 
     public function byCategory(Category $category, Request $request) {
-        return ProductResource::collection(
+        $products =  ProductResource::collection(
             Product::query()
                 ->with('media')
                 ->where('category_product.category_id', '=', $category->id)
@@ -71,5 +71,12 @@ class HomeController extends Controller
                 ->orderBy('created_at', 'desc')
                 ->paginate(20)
         );
+
+        $category = Category::query()->where('id', $category->id)->first();
+
+        return response([
+            'products' => $products,
+            'category' => $category
+        ]);
     }
 }
