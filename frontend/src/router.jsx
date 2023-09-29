@@ -26,6 +26,14 @@ const router = createBrowserRouter([
         path: '/shopping-cart',
         element: <ShoppingCart />
     },
+    {
+        path: '/category/:slug',
+        element: <Category />
+    },
+    {
+        path: '*',
+        element: <NotFound />
+    }
 ])
 
 export default router;
